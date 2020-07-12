@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Aplikasi Data Mahasiswa</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Sofia">
+</head>
+<body style="">
+<div class="container">
+<h1 class="text-center" style="font-family: Sofia;">Selamat Datang di Aplikasi Data Mahasiswa</h1>
+    <div style="margin-bottom:12px; margin-left:10px;">
+<a class="btn btn-warning" style="text-decoration:none;" href="/tambah">Tambah Data</a>
+        <div class="float-right" style="margin-right:10px;">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+                About
+            </button>
+            <div class="modal" id="myModal">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h4 class="modal-title" style="font-family: Sofia;">My Profile</h4>
+                            <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        </div>
+                        <div class="modal-body">
+                            <div class="row" style="padding-bottom:5px;">
+                                <div class="col" style="font-size:25px; font-family: Sofia;">
+                                    <span class="tile_info">
+                                        Nama Lengkap :
+                                    <span>Yayang Setiyawan</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom:5px;">
+                                <div class="col" style="font-size:25px; font-family: Sofia;">
+                                    <span class="tile_info">
+                                        Nim :
+                                    <span>18090045</span>
+                                    </span>
+                                </div>
+                            </div>
+                            <div class="row" style="padding-bottom:5px;">
+                                <div class="col" style="font-size:25px; font-family: Sofia;">
+                                    <span class="tile_info">
+                                        Github :
+                                    <span><a href="https://github.com/setiyawan12">Setiyawan12</a></span>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+        <div th:switch="${data}">
+    <div>
+        <h2 th:case="null">Tidak ada data</h2>
+        <div th:case="*">
+            <table class="table">
+                <thead>
+                <tr class="table-success">
+                    <th>Nim</th>
+                    <th>Nama</th>
+                    <th>Jurusan</th>
+                    <th>Alamat</th>
+                    <th>Ubah Data</th>
+                    <th>Hapus Data</th>
+               </tr>
+                </thead>
+                <tbody class="table-dark">
+                <tr th:each="data : ${data}">
+                    <td th:text="${data.nim}"></td>
+                    <td th:text="${data.nama}"></td>
+                    <td th:text="${data.jurusan}"></td>
+                    <td th:text="${data.alamat}"></td>
+                    <td><a class="btn btn-success " style="text-decoration:none;" th:href="@{/ubah/{nim}(nim=${data.nim})}">EDIT</a></td>
+                    <td><a class="btn btn-danger" style="text-decoration:none" th:href="@{/hapus/{nim}(nim=${data.nim})}">DELETE</a></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    </div>
+</div>
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js" integrity="sha384-OgVRvuATP1z7JjHLkuOU7Xw704+h835Lr+6QL9UvYjZE3Ipu6Tp75j7Bh/kR0JKI" crossorigin="anonymous"></script>
+</body>
+</html>
